@@ -12,8 +12,8 @@ Phase 3: UI and 3 pages
 Extra Credit Potential (+15%)
 
 Project Discussion: Minimum Viable Product
-    Needs to implement CRUD (Create, Read, Update, Delete) for Users, Posts, and Comments.
-    Posts can only be text posts for now
+- Needs to implement CRUD (Create, Read, Update, Delete) for Users, Posts, and Comments.
+- Posts can only be text posts for now
     Don’t worry about storage or database connections
     You can sort them based on time created (need to make time stamps)
     Comments should be able to be associated with the posts and other comments (like you should be able to reply to comments) and associated with the users that made the comments
