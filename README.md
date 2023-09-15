@@ -47,11 +47,17 @@ Deliverables for Phase 3:
 - We’ll be creating a UI using JavaFX or Swing to see all of our code
 - We want to develop 3 pages: 
           1. “Home” pages that lists posts (sorted by date/karma)
+  
             - Like the front page of reddit
+  
           2. “Comments” page that lists comments associated with posts (sorted by date/karma)
-            -  Similar to a ladder format like reddit 
+  
+            -  Similar to a ladder format like reddit
+  
           3. “Users” page that lists users (sorted by date/karma)
-            -  basically a leader board for users that first signed up and those that have the most karma 
+  
+            -  basically a leader board for users that first signed up and those that have the most karma
+  
 - Usual UML Diagram to explain class diagram
 - Working Java Code that adheres to containers
 - Project Presentation 
