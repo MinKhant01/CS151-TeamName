@@ -7,19 +7,24 @@ FL23 CS151 class project of bitBreakers with the following members
 We'll be creating a mock-up of Reddit. Below are the 3 phases:
 
 Phase 1: Minimum Viable Product
+
 Phase 2: Karma and Upvotes
+
 Phase 3: UI and 3 pages
+
 Extra Credit Potential (+15%)
 
 Project Discussion: Minimum Viable Product
 - Needs to implement CRUD (Create, Read, Update, Delete) for Users, Posts, and Comments.
 - Posts can only be text posts for now
-    Don’t worry about storage or database connections
-    You can sort them based on time created (need to make time stamps)
-    Comments should be able to be associated with the posts and other comments (like you should be able to reply to comments) and associated with the users that made the comments
+- Don’t worry about storage or database connections
+- You can sort them based on time created (need to make time stamps)
+- Comments should be able to be associated with the posts and other comments (like you should be able to reply to comments) and associated with the users that made the comments
 
 Deliverables for phase 1:
+
     UML Diagrams to explain class design 
+    
     Working Java code that can do basic code (based on MVP Above)
     Each phase is 1 month long 
     UML Diagram needs to be submitted every 2 weeks
