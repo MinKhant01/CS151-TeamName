@@ -32,7 +32,7 @@ Deliverables for Phase 2:
 - Create Upvotes/Downvotes -> make Upvotes/Downvotes for posts and comments 
 - Create “Karma” that’s associated with their posts/comments
 
-  sum total of upvotes - downvotes on a post/commments
+  - sum total of upvotes - downvotes on a post/commments
   
 - Working UML Diagram to explain class design 
 - Working code with new constraints (below)
