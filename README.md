@@ -1,6 +1,6 @@
 # bitBreakers
 FL23 CS151 class project of bitBreakers with the following members
-- Benjamin Le
+- Benjamin Le 
 - Vishwesh Dharmesh Mashruwala
 - Edward Khant
 
