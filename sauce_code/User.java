@@ -1,32 +1,34 @@
 package redditClone;
 import java.text.SimpleDateFormat;
-import java.util.Scanner;
 import java.util.*;
-import java.util.Date;
+
+
 
 public class User {
-    private int userID;
+    int userID;
     static int userCount = 0;
-    private String username;
-    private String password;
-    private String userLastName;
-    private String userFirstName;
-    private long timestamp;
-    private String displayTimeStamp;
+    String username;
+    String password;
+    String userLastName;
+    String userFirstName;
+    long timestamp;
+    String displayTimeStamp;
     ArrayList<Content> userContent;
     Thread [] userThread;
-    Page userPage;
+    //Page userPage;
 
-    public User(String username, String password, String userFirstName, String userLastName){
+    public User(String userName, String passWord, String firstName, String lastName){
         userCount++;
         userID = userCount;
 
-        this.username = username;
-        this.password = password;
-        this.userFirstName = userFirstName;
-        this.userLastName = userLastName;
+        username = userName;
+        password = passWord;
+        userFirstName = firstName;
+        userLastName = lastName;
 
-        String displayTimeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
+        @SuppressWarnings("unused")
+		String displayTimeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
+        @SuppressWarnings("unused")
         long timeStamp = System.currentTimeMillis();
 
         userContent = new ArrayList<Content>();
@@ -38,7 +40,7 @@ public class User {
     // boolean displayUser();
 
     boolean makePost(String s){
-        Content c = new Content(s);
+        Content c = new Content(s, userID);
         userContent.add(c);
         return true;
     }
@@ -61,12 +63,10 @@ public class User {
             if(userContent.get(i).getContentID() == id){
                 Content c = userContent.get(i);
                 //get threads returns arrayList of threads
-                c.getThread().add(new CommentThread(comment));
+                c.getThread().add(new CommentThread(comment, userID));
                 break;
             }
         }
-
-
         return true;
 
     }
@@ -77,13 +77,13 @@ public class User {
             if(userContent.get(i).getContentID() == contentID){
                 Content c = userContent.get(i);
                 //get threads returns arrayList of threads
-                c.getThread().add(new CommentThread(comment));
-
+                c.getThread().add(new CommentThread(comment,userID));
+                
                 ArrayList<CommentThread> thread = c.getThread();
 
                 for(int j = 0;  j < thread.size(); j++){
                     if(thread.get(j).getID() == threadID){
-                        thread.get(j).add(new Comment(comment));
+                        thread.get(j).add(new Comment(comment, userID));
                         break;
                     }
                 }
@@ -103,13 +103,13 @@ public class User {
             if(userContent.get(i).getContentID() == contentID){
                 Content c = userContent.get(i);
                 //get threads returns arrayList of threads
-                c.getThread().add(new CommentThread(comment));
+                c.getThread().add(new CommentThread(comment, userID));
 
                 ArrayList<CommentThread> thread = c.getThread();
 
                 for(int j = 0;  j < thread.size(); j++){
                     if(thread.get(j).getID() == threadID){
-                        thread.get(j).set(comment);
+                        thread.get(j).threadText = comment;
                         break;
                     }
                 }
@@ -127,13 +127,13 @@ public class User {
             if(userContent.get(i).getContentID() == contentID){
                 Content c = userContent.get(i);
                 //get threads returns arrayList of threads
-                c.getThread().add(new CommentThread(comment));
+                c.getThread().add(new CommentThread(comment, userID));
 
                 ArrayList<CommentThread> thread = c.getThread();
 
                 for(int j = 0;  j < thread.size(); j++){
                     if(thread.get(j).getID() == threadID){
-                        thread.get(j).remove(threadID);
+                        thread.remove(threadID);
                         break;
                     }
                 }
