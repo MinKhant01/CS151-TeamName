@@ -5,8 +5,11 @@ Functionality:
 1. Make a Post
 2. Delete a post
 3. Make a CommentThread (A comment replying to the post itself)
+
      a. Update a CommentThread (Update the comment replying to the post)
+   
      b. Delete a CommentThread (Delete the comment replying to the post)
+   
 4. Make a comment (A comment replying to another comment)
 
 User Class Notes:
