@@ -20,7 +20,7 @@ In our Sequence Diagram it shows that the User Class will interact with the Page
 
 # Content Class
 
-Our Content Class acts as a platform to hold both our post object and our commentThread arrayList.
+Our Content Class acts as a platform to hold both our post object and our commentThread type arrayList.
 
 Functionality:
 1. Creates a post object and an arrayList of commentThreads.
@@ -31,5 +31,36 @@ Content Class Notes:
 - Since a post can have multiple comments replying to it (commentThreads) we made an arrayList to contain all of them (contentThread)
 - An arrayList allows us to continually add on new commments to the post as well
 
-# 
+# Post Class
+
+A simple class to create the post object. Contains text (string), contentID, userID, and a timeStamp for sorting.
+
+Functionality:
+1. Display Post
+2. Update Post
+
+# CommentThread Class
+
+Every comment that responds to the post is a commentThread. This is because other comments can now reply to this comment. Thus each commentThread is just an ArrayList of comments replying to one another. 
+
+Functionality:
+1. Add a comment
+2. Delete a comment
+3. Update a comment
+4. Display thread of comments
+5. Sort by time
+6. Get ThreadID
+
+# Comment Class
+
+The comment class represents the comments that are replying to other comments. Just like the commentThread we also have an ArrayList of comments replying to one another. The only distinction between the two is that commentThread replies directly to the post while the comment class replies to another comment thus functionality is primarily the same.
+
+
+Functionality:
+1. Add a comment
+2. Delete a comment
+3. Update a comment
+4. Display comment text
+5. Sort by time
+6. Get CommentID
 
