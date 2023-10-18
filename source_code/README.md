@@ -1,4 +1,5 @@
-#User class
+# User class
+
 Functionality:
 1. Make a Post
 2. Delete a post
