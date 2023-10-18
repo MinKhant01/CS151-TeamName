@@ -1,4 +1,5 @@
-Our user class will be the diver class that allows us to do a few things:
+#User class
+Functionality:
 1. Make a Post
 2. Delete a post
 3. Make a CommentThread (A comment replying to the post itself)
