@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.concurrent.*;
 
 public class Comment{
-	
+
 	static int commentCount = 0;
 	int commentID = 0;
 	int commentCreatorID;
@@ -14,8 +14,14 @@ public class Comment{
 	int commentRefPostUserID;
 	String timeStamp;
 	long time;
+	int totalKarma;
 	
 	ArrayList<Comment> comments;
+	
+	/**
+	 * This is to keep track of user reactions on the comment
+	 */
+	HashMap<User, voteType> commentMap = new HashMap<>();
 	
 	
 //	int commentDownVote;
@@ -25,7 +31,6 @@ public class Comment{
 		
 		commentCount++;
 		commentID = commentCount;
-		
 		commentTextMedia = text;
 		commentCreatorID = creatorID;
 		comments = new ArrayList<>();
@@ -72,49 +77,95 @@ public class Comment{
 	        }
 	    });
 	}
+	
+	public void sortByKarma() {
+	    Collections.sort(comments, new Comparator<Comment>() {
+	        public int compare(Comment c1, Comment c2) {
+	            return Long.compare(c2.totalKarma, c1.totalKarma);
+	        }
+	    });
+	}
+	
+	
+	
+	
+	 /**
+     * This method add reactions of a particular user on a particular comment
+     * @param u
+     * @param v
+     */
+	
+	public void addToReactions(User user, voteType v) {
+		
+//		if(commentMap.get(user) == v) {
+//			commentMap.put(user, voteType.NOVOTE);
+//		}
+		
+		commentMap.put(user, v);
+	}
+	
+	/**
+	 * This method return the karma on a particular comment
+	 * @return
+	 */
+	public int getCommentKarma() {
+		ArrayList<voteType> reactions = (ArrayList<voteType>)commentMap.values();
+		int totalCommentKarma = 0;
+		for(int i = 0; i < reactions.size(); i++) {
+			voteType reaction = reactions.get(i);
+			if(reaction == voteType.UPVOTE) {
+				totalCommentKarma += 1;
+			}
+			else if(reaction == voteType.DOWNVOTE) {
+				totalCommentKarma -= 1;
+			}
+		}
+		totalKarma = totalCommentKarma;
+		return totalCommentKarma;
+	}
 
 	
 	
-	public static void main(String[] args) {
-		Comment c = new Comment("Hello World", 1);
-		
-		 c.addComment(new Comment("Hello Wrld", 2));
-		 try {
-			TimeUnit.SECONDS.sleep(1);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		 Comment c3 = new Comment("Hello Wold", 3);
-		 c3.time = Long.MAX_VALUE;
-		 c.addComment(c3);
-		 try {
-				TimeUnit.SECONDS.sleep(1);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		 c.addComment(new Comment("Hello Word", 4));
-		 try {
-				TimeUnit.SECONDS.sleep(1);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		//c.addComment(new Comment("Hello Worl", 5));
-		//System.out.println(c.getComment());
-		System.out.print(c.deleteCommentComment(5));
-		//System.out.print(c.comments.size());
-		c.sortByTime();
-		
-		for(int i = 0; i < c.comments.size(); i++) {
-			
-			System.out.print(c.comments.get(i).commentCreatorID + " " + c.comments.get(i).time + " ");
-		}
-		
-		
-		
-	}
+//	public static void main(String[] args) {
+//		Comment c = new Comment("Hello World", 1);
+//		
+//		 c.addComment(new Comment("Hello Wrld", 2));
+//		 try {
+//			TimeUnit.SECONDS.sleep(1);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		 Comment c3 = new Comment("Hello Wold", 3);
+//		 c3.time = Long.MAX_VALUE;
+//		 c.addComment(c3);
+//		 try {
+//				TimeUnit.SECONDS.sleep(1);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		 c.addComment(new Comment("Hello Word", 4));
+//		 try {
+//				TimeUnit.SECONDS.sleep(1);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		//c.addComment(new Comment("Hello Worl", 5));
+//		//System.out.println(c.getComment());
+//		System.out.print(c.deleteCommentComment(5));
+//		//System.out.print(c.comments.size());
+//		c.sortByTime();
+//		
+//		for(int i = 0; i < c.comments.size(); i++) {
+//			
+//			System.out.print(c.comments.get(i).commentCreatorID + " " + c.comments.get(i).time + " ");
+//		}
+//		
+//		
+//		
+//	}
 
 }
 
