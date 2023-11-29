@@ -1,7 +1,6 @@
 | Diagram Type | Description | Link|
 | --- | --- | --- |
 | Class Diagram (UPDATED: additional front end UML added)| A class diagram describing the classes involved, their structures and relationships | https://github.com/MinKhant01/CS151-bitBreakers/blob/main/Diagrams/Phase%202/phase2_UMLdiagram.png
-
 https://github.com/MinKhant01/CS151-bitBreakers/blob/main/Diagrams/Phase%203/Front%20End%20UML.PNG
 | Use Case Diagram | A use case diagram portraying the CRUD functionalities of our team's social media MVP | https://github.com/MinKhant01/CS151-bitBreakers/blob/main/Diagrams/Phase%201/useCase_diagram.png
 | State Diagram  | A state diagram that depicts the app event loop | https://github.com/MinKhant01/CS151-bitBreakers/blob/main/Diagrams/Phase%201/State_Diagram.png
