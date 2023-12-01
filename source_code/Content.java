@@ -16,7 +16,7 @@ public class Content{
     static int contentCounter = 0;
     int contentID;                              //unique ID for a content (content = post + thread)
     Post contentPost;                           //post for content
-    List<Comment> contentThread;      //thread for content
+    ArrayList<CommentThread> contentThread;      //thread for content
     int userID;
 
     //constructor for class Content
@@ -24,7 +24,7 @@ public class Content{
         contentCounter++;
         this.contentID = contentCounter;
         contentPost = new Post(postTextMedia,contentID, userID);
-        contentThread = new ArrayList<>();
+        contentThread = new ArrayList<CommentThread>();
         this.userID = userID;
         
     }
@@ -35,19 +35,19 @@ public class Content{
     }
 
     //getter for contentThread arrayList
-    public List<Comment> getThread(){
+    public ArrayList<CommentThread> getThread(){
         return contentThread;
     }
 
     //method for adding commentThreads
     public boolean makePostComment(String commentText){
-        contentThread.add(new Comment(commentText, userID));
+        contentThread.add(new CommentThread(commentText, userID));
         return true;
     }
     
     public void sortByTime() {
-	    Collections.sort(contentThread, new Comparator<Comment>() {
-	        public int compare(Comment c1, Comment c2) {
+	    Collections.sort(contentThread, new Comparator<CommentThread>() {
+	        public int compare(CommentThread c1, CommentThread c2) {
 	            return Long.compare(c2.time, c1.time);
 	        }
 	    });

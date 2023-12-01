@@ -43,11 +43,31 @@ public class Comment{
 		return commentTextMedia;
 	}
 	
-	public boolean deleteCommentComment(int id) {
-		
+	public boolean deleteCommentComment(int topId, Comment comment) {
+	
+		for(int i = 0; i < comments.size(); i++) {
+			if(comments.get(i).getCommentID() == topId) {
+				comments.remove(comment);
+				break;
+			}
+		}
+		return true;
+	}
+	
+	public boolean addCommentonComment(int id, String comment, int creatorId) {
+			for(int i = 0; i < comments.size(); i++) {
+				if(comments.get(i).getCommentID() == id) {
+					comments.get(i).addComment(new Comment(comment, creatorId));
+					break;
+				}
+			}
+			return true;
+		}
+	
+	public boolean upDateCommentonComment(int id, String comment) {
 		for(int i = 0; i < comments.size(); i++) {
 			if(comments.get(i).getCommentID() == id) {
-				comments.remove(i);
+				comments.get(i).updateComment(comment);
 				break;
 			}
 		}
@@ -168,4 +188,3 @@ public class Comment{
 //	}
 
 }
-

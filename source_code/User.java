@@ -20,9 +20,9 @@ public class User {
     //Page userPage;
 
     public User(String userName, String passWord, String firstName, String lastName){
+    	
         userCount++;
         userID = userCount;
-
         username = userName;
         password = passWord;
         userFirstName = firstName;
@@ -32,7 +32,6 @@ public class User {
 		String displayTimeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
         @SuppressWarnings("unused")
         long timeStamp = System.currentTimeMillis();
-
         userContent = new ArrayList<Content>();
     }
  
@@ -63,7 +62,7 @@ public class User {
             if(userContent.get(i).getContentID() == id){
                 Content c = userContent.get(i);
                 //get threads returns arrayList of threads
-                c.getThread().add(new Comment(comment, userID));
+                c.getThread().add(new CommentThread(comment, userID));
                 break;
             }
         }
@@ -77,13 +76,13 @@ public class User {
             if(userContent.get(i).getContentID() == contentID){
                 Content c = userContent.get(i);
                 //get threads returns arrayList of threads
-                c.getThread().add(new Comment(comment,userID));
+                c.getThread().add(new CommentThread(comment,userID));
                 
-                ArrayList<Comment> thread = (ArrayList<Comment>)c.getThread();
+                ArrayList<CommentThread> thread = c.getThread();
 
                 for(int j = 0;  j < thread.size(); j++){
-                    if(thread.get(j).getCommentID() == threadID){
-                        thread.add(new Comment(comment, userID));
+                    if(thread.get(j).getID() == threadID){
+                        thread.get(j).add(new Comment(comment, userID));
                         break;
                     }
                 }
@@ -103,13 +102,13 @@ public class User {
             if(userContent.get(i).getContentID() == contentID){
                 Content c = userContent.get(i);
                 //get threads returns arrayList of threads
-                c.getThread().add(new Comment(comment, userID));
+                c.getThread().add(new CommentThread(comment, userID));
 
-                ArrayList<Comment> thread = (ArrayList<Comment>)c.getThread();
+                ArrayList<CommentThread> thread = c.getThread();
 
                 for(int j = 0;  j < thread.size(); j++){
-                    if(thread.get(j).getCommentID() == threadID){
-                        thread.get(j).commentTextMedia = comment;
+                    if(thread.get(j).getID() == threadID){
+                        thread.get(j).threadText = comment;
                         break;
                     }
                 }
@@ -127,12 +126,12 @@ public class User {
             if(userContent.get(i).getContentID() == contentID){
                 Content c = userContent.get(i);
                 //get threads returns arrayList of threads
-                c.getThread().add(new Comment(comment, userID));
+                c.getThread().add(new CommentThread(comment, userID));
 
-                ArrayList<Comment> thread = (ArrayList<Comment>)c.getThread();
+                ArrayList<CommentThread> thread = c.getThread();
 
                 for(int j = 0;  j < thread.size(); j++){
-                    if(thread.get(j).getCommentID() == threadID){
+                    if(thread.get(j).getID() == threadID){
                         thread.remove(threadID);
                         break;
                     }
@@ -192,7 +191,7 @@ public class User {
     
     /**
      * This method will be triggered whenever the user reacts on something on the frontend for comment
-     * @param c
+     * @param p
      * @param v
      */
     
