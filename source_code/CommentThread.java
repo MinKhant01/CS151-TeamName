@@ -21,8 +21,10 @@ public class CommentThread {
 	int postID;
 	String threadText; // the text of a thread
 	long time;
-	
-	
+	HashMap<User, voteType> commentMap = new HashMap<>();
+	int totalKarma;
+
+
 	/**
 	 * 
 	 * @param s
@@ -47,8 +49,33 @@ public class CommentThread {
 	public void add(Comment comment) {
 		comments.add(comment);
 	}
-		
 
+	public void addToReactions(User user, voteType v) {
+
+//		if(commentMap.get(user) == v) {
+//			commentMap.put(user, voteType.NOVOTE);
+//		}
+
+		commentMap.put(user, v);
+	}
+
+	public int getCommentKarma() {
+		//ArrayList<voteType> reactions = (ArrayList<voteType>)commentMap.values();
+		List<voteType> reactions = new ArrayList<voteType>(commentMap.values());
+
+		int totalCommentKarma = 0;
+		for(int i = 0; i < reactions.size(); i++) {
+			voteType reaction = reactions.get(i);
+			if(reaction == voteType.UPVOTE) {
+				totalCommentKarma += 1;
+			}
+			else if(reaction == voteType.DOWNVOTE) {
+				totalCommentKarma -= 1;
+			}
+		}
+		totalKarma = totalCommentKarma;
+		return totalCommentKarma;
+	}
 	
 	public boolean addComment(String comment) {
 		comments.add(new Comment(comment, userID));

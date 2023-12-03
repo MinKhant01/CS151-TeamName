@@ -1,7 +1,7 @@
 package redditClone;
 
 public enum voteType {
-			UPVOTE,
-			DOWNVOTE,
-			NOVOTE
+    UPVOTE,
+    DOWNVOTE,
+    NOVOTE
 }

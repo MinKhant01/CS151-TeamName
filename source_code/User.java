@@ -194,7 +194,10 @@ public class User {
      * @param p
      * @param v
      */
-    
+    public void react(CommentThread ct, voteType v) {
+        ct.addToReactions(this, v);
+    }
+
     public void react(Comment c, voteType v) {
     	c.addToReactions(this, v);
     }

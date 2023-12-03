@@ -1,7 +1,6 @@
 package redditClone;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.concurrent.*;
 
 public class Comment{
 
@@ -129,7 +128,9 @@ public class Comment{
 	 * @return
 	 */
 	public int getCommentKarma() {
-		ArrayList<voteType> reactions = (ArrayList<voteType>)commentMap.values();
+		//ArrayList<voteType> reactions = (ArrayList<voteType>)commentMap.values();
+		List<voteType> reactions = new ArrayList<voteType>(commentMap.values());
+
 		int totalCommentKarma = 0;
 		for(int i = 0; i < reactions.size(); i++) {
 			voteType reaction = reactions.get(i);

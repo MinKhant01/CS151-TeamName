@@ -1,9 +1,8 @@
 package redditClone;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 
 public class Post{
    int postID;                 //unique ID for post
@@ -69,7 +68,8 @@ public class Post{
 	 * @return
 	 */
 	public int getPostKarma() {
-		ArrayList<voteType> reactions = (ArrayList<voteType>)postMap.values();
+		//ArrayList<voteType> reactions = (ArrayList<voteType>)postMap.values();
+        List<voteType> reactions = new ArrayList<voteType>(postMap.values());
 		int totalPostKarma = 0;
 		for(int i = 0; i < reactions.size(); i++) {
 			voteType reaction = reactions.get(i);
