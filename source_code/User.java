@@ -1,4 +1,3 @@
-package redditClone;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -17,42 +16,58 @@ public class User {
     ArrayList<Content> userContent;
     ArrayList<Comment> comments;
     int totalKarma;
-    //Page userPage;
 
-    public User(String userName, String passWord, String firstName, String lastName){
+    public User(String username, String password, String firstName, String lastName){
     	
         userCount++;
-        userID = userCount;
-        username = userName;
-        password = passWord;
-        userFirstName = firstName;
-        userLastName = lastName;
+        this.userID = userCount;
+        this.username = username;
+        this.password = password;
+        this.userFirstName = firstName;
+        this.userLastName = lastName;
 
         @SuppressWarnings("unused")
-		String displayTimeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
+		String displayTimeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
         @SuppressWarnings("unused")
         long timeStamp = System.currentTimeMillis();
         userContent = new ArrayList<Content>();
+        comments = new ArrayList<Comment>();
     }
  
 
     // boolean displayUser();
 
-    boolean makePost(String s){
-        Content c = new Content(s, userID);
+    public boolean makePost(String text){
+        boolean isAdded = false;
+        int initSize = userContent.size();
+
+        Content c = new Content(text, userID);
         userContent.add(c);
-        return true;
+
+        if(userContent.size() == initSize+1){
+            isAdded = true;
+        }
+        return isAdded;
     }
 
-    boolean deletePost(int id) {
+    public boolean deletePost(int id) {
+        boolean isFound, isDeleted = false;
+        int initSize = userContent.size();
 
         for(int i = 0; i < userContent.size(); i++){
             if(userContent.get(i).getContentID() == id){
+                isFound = true;
                  userContent.remove(i);
+                 if(userContent.size() == initSize--){
+                     isDeleted = true;
+                 }
                  break;
             }
+            else{
+                System.out.println("The post you are attempting to delete does not exist in the system.");
+            }
         }
-        return true;
+        return isDeleted;
 
     }
 
@@ -62,7 +77,7 @@ public class User {
             if(userContent.get(i).getContentID() == id){
                 Content c = userContent.get(i);
                 //get threads returns arrayList of threads
-                c.getThread().add(new CommentThread(comment, userID));
+                c.getContentThread().add(new CommentThread(comment, userID));
                 break;
             }
         }
@@ -76,9 +91,9 @@ public class User {
             if(userContent.get(i).getContentID() == contentID){
                 Content c = userContent.get(i);
                 //get threads returns arrayList of threads
-                c.getThread().add(new CommentThread(comment,userID));
+                c.getContentThread().add(new CommentThread(comment,userID));
                 
-                ArrayList<CommentThread> thread = c.getThread();
+                ArrayList<CommentThread> thread = c.getContentThread();
 
                 for(int j = 0;  j < thread.size(); j++){
                     if(thread.get(j).getID() == threadID){
@@ -102,9 +117,9 @@ public class User {
             if(userContent.get(i).getContentID() == contentID){
                 Content c = userContent.get(i);
                 //get threads returns arrayList of threads
-                c.getThread().add(new CommentThread(comment, userID));
+                c.getContentThread().add(new CommentThread(comment, userID));
 
-                ArrayList<CommentThread> thread = c.getThread();
+                ArrayList<CommentThread> thread = c.getContentThread();
 
                 for(int j = 0;  j < thread.size(); j++){
                     if(thread.get(j).getID() == threadID){
@@ -126,9 +141,9 @@ public class User {
             if(userContent.get(i).getContentID() == contentID){
                 Content c = userContent.get(i);
                 //get threads returns arrayList of threads
-                c.getThread().add(new CommentThread(comment, userID));
+                c.getContentThread().add(new CommentThread(comment, userID));
 
-                ArrayList<CommentThread> thread = c.getThread();
+                ArrayList<CommentThread> thread = c.getContentThread();
 
                 for(int j = 0;  j < thread.size(); j++){
                     if(thread.get(j).getID() == threadID){
@@ -144,7 +159,7 @@ public class User {
         return true;
     }
     
-    public void sortByTime() {
+    public void sortContentByTime() {
 	    Collections.sort(userContent, new Comparator<Content>() {
 	        public int compare(Content c1, Content c2) {
 	            return Long.compare(c2.contentPost.postTimeStamp, c1.contentPost.postTimeStamp);
@@ -152,10 +167,10 @@ public class User {
 	    });
 	}
     
-    public void sortByKarma() {
+    public void sortContentByKarma() {
 	    Collections.sort(userContent, new Comparator<Content>() {
 	        public int compare(Content c1, Content c2) {
-	            return Long.compare(c2.contentPost.totalKarma, c1.contentPost.totalKarma);
+	            return Integer.compare(c2.contentPost.totalKarma, c1.contentPost.totalKarma);
 	        }
 	    });
 	}
@@ -168,9 +183,9 @@ public class User {
     public int getKarma() {
     	
     	int karma = 0;
-    	for(int i = 0; i < comments.size(); i++) {
-    		karma += comments.get(i).getCommentKarma();
-    	}
+//    	for(int i = 0; i < comments.size(); i++) {
+//    		karma += comments.get(i).getCommentKarma();
+//    	}
     	
     	for(int i = 0; i < userContent.size(); i++) {
     		karma += userContent.get(i).contentPost.getPostKarma();
@@ -191,7 +206,7 @@ public class User {
     
     /**
      * This method will be triggered whenever the user reacts on something on the frontend for comment
-     * @param p
+     * @param ct
      * @param v
      */
     public void react(CommentThread ct, voteType v) {

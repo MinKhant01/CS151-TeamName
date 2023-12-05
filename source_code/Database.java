@@ -1,4 +1,3 @@
-package redditClone;
 import java.util.*;
 
 /**

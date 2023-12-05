@@ -1,4 +1,3 @@
-package redditClone;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -33,7 +32,7 @@ public class Comment{
 		commentTextMedia = text;
 		commentCreatorID = creatorID;
 		comments = new ArrayList<>();
-		timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
+		timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
 		time = System.currentTimeMillis(); 
 		
 	}

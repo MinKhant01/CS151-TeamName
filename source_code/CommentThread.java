@@ -1,4 +1,3 @@
-package redditClone;
 import java.util.*;
 
 /**
@@ -24,10 +23,12 @@ public class CommentThread {
 	HashMap<User, voteType> commentMap = new HashMap<>();
 	int totalKarma;
 
+	public String getThreadText(){return threadText;}
+
 
 	/**
 	 * 
-	 * @param s
+	 * @param comment
 	 * @param userID
 	 */
 	public CommentThread(String comment, int userID) {

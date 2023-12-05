@@ -1,4 +1,3 @@
-package redditClone;
 import java.util.*;
 import java.util.Collections;
 import java.util.Comparator;
@@ -30,14 +29,10 @@ public class Content{
     }
 
     //getter for contentID
-    public int getContentID(){
-        return this.contentID;
-    }
+    public int getContentID(){return contentID;}
+    public Post getContentPost() {return contentPost;}
+    public ArrayList<CommentThread> getContentThread() {return contentThread;}
 
-    //getter for contentThread arrayList
-    public ArrayList<CommentThread> getThread(){
-        return contentThread;
-    }
 
     //method for adding commentThreads
     public boolean makePostComment(String commentText){

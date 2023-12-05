@@ -1,4 +1,3 @@
-package redditClone;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,11 +16,8 @@ public class Post{
     * This is to keep track of the User reactions on the post
     */
    HashMap<User, voteType> postMap = new HashMap<>();
-   
-    /*
-    private int postDownVote;           //down vote for the post
-    private int postUpVote;             //up vote for the post
-     */
+
+   public String getPostTextMedia(){return postTextMedia;}
    	
    /**
     * removed String username as we dont need to handle username in this class 
@@ -29,7 +25,6 @@ public class Post{
     * 
     * @param textMedia
     * @param contentID
-    * @param userName
     * @param userID
     */
     public Post(String textMedia, int contentID, int userID){
@@ -74,14 +69,14 @@ public class Post{
 		for(int i = 0; i < reactions.size(); i++) {
 			voteType reaction = reactions.get(i);
 			if(reaction == voteType.UPVOTE) {
-				totalPostKarma += 1;
+				totalPostKarma++;
 			}
 			else if(reaction == voteType.DOWNVOTE) {
-				totalPostKarma -= 1;
+				totalPostKarma--;
 			}
 		}
 		totalKarma = totalPostKarma;
-		return totalPostKarma;
+		return totalKarma;
 	}
 
 }
